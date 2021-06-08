@@ -1,4 +1,5 @@
-import argparse
+# rebootstr
+
 from queue import Queue
 from threading import Thread
 from HTTPServer import HTTPServer
@@ -51,17 +52,19 @@ def run():
                 index = search_value
                 print("index set to", index)
             else:
-                print("Print list")
+                print("Print list. index =", index)
         elif button == "buttonMusicNext":
-            print("down")
+            index += 1
+            print("down, index =", index)
         elif button == "buttonMusicPrevious":
-            print("up")
+            index -= 1
+            print("up, index =", index)
         elif button == "buttonMusicVolumeUp":
             if search_mode:
                 search_value += 1
                 print(search_value)
             else:
-                print("open index", index)
+                print("open with index", index)
                 index = 0
         elif button == "buttonMusicVolumeDown":
             if search_mode:
