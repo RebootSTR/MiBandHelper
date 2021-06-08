@@ -27,7 +27,7 @@ class HTTPServer:
 
     def get(self):
         connection, client_address = self.sock.accept()
-        data = connection.recv(16)
+        data = connection.recv(64)
         connection.close()
 
         return data.decode(encoding="utf-8")
