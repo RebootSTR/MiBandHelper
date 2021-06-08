@@ -45,7 +45,7 @@ def run():
     index = 0
     while True:
         button = queue.get()
-        print(button)
+        # print(button)
 
         if button == "buttonMusicPlay":
             if search_mode:
