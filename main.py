@@ -1,5 +1,5 @@
 # rebootstr
-
+import time
 from queue import Queue
 from threading import Thread
 from HTTPServer import HTTPServer
@@ -12,8 +12,8 @@ def start_server(queue: Queue):
         while True:
             queue.put(server.get())
 
-    thread = Thread(target=listener, daemon=True)
-    thread.start()
+    serverThread = Thread(target=listener, daemon=True)
+    serverThread.start()
 
 '''Music Play/Pause event use com.mc.miband.buttonMusicPlay action **
 
