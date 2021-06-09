@@ -73,6 +73,7 @@ class MenuApp(Apps.AppI.AppI):
     def _applySearching(self):
         self.searchMode: Searcher
         self.index = self.searchMode.get(len(self.apps) - 1)
+        self._exitFromSearchMode()
 
     def _printListing(self):
         toPrint = ""
