@@ -79,7 +79,7 @@ class MenuApp(Apps.AppI.AppI):
         toPrint = ""
         for i in range(len(self.apps)):
             prefix = "#" if i == self.index else "-"
-            toPrint += prefix + self.apps[i]["name"] + "\n"
+            toPrint += f"{i}.{prefix}{self.apps[i]['name']}\n"
         self.system.print(toPrint)
 
     def _parseApps(self):
