@@ -17,7 +17,6 @@ def parse_buttons(enter: str):
 
 
 def run():
-    client = HTTPClient()
     print("7 9")
     print(" 5")
     print("1 3")
@@ -26,7 +25,7 @@ def run():
         enter = input("Enter a buttons: ")
         to_send = parse_buttons(enter)
         for send in to_send:
-            client.send(send)
+            HTTPClient().send(send)
 
 
 if __name__ == '__main__':

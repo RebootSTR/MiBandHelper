@@ -2,6 +2,8 @@
 
 from queue import Queue
 from threading import Thread
+
+from BandOS import BandOS
 from HTTPServer import HTTPServer
 
 
@@ -34,45 +36,27 @@ buttons = \
 def run():
     queue = Queue()
     start_server(queue)
-
-    search_mode = False
-    search_value = 0
-    index = 0
+    system = BandOS()
     while True:
         button = queue.get()
         # print(button)
 
         if button == "buttonMusicPlay":
-            if search_mode:
-                search_mode = False
-                index = search_value
-                print("index set to", index)
-            else:
-                print("Print list. index =", index)
-        elif button == "buttonMusicNext":
-            index += 1
-            print("down, index =", index)
-        elif button == "buttonMusicPrevious":
-            index -= 1
-            print("up, index =", index)
-        elif button == "buttonMusicVolumeUp":
-            if search_mode:
-                search_value += 1
-                print(search_value)
-            else:
-                print("open with index", index)
-                index = 0
-        elif button == "buttonMusicVolumeDown":
-            if search_mode:
-                search_value += 10
-                print(search_value)
-            else:
-                print("return")
-                index = 0
+            system.play()
         elif button == "buttonMusicPlay2":
-            print("search")
-            search_mode = True
-            search_value = 0
+            system.play2x()
+        elif button == "buttonMusicNext":
+            system.next()
+        elif button == "buttonMusicPrevious":
+            system.previous()
+        elif button == "buttonMusicVolumeUp":
+            system.volUp()
+        elif button == "buttonMusicVolumeUp2":
+            system.volUp2x()
+        elif button == "buttonMusicVolumeDown":
+            system.volDown()
+        elif button == "buttonMusicVolumeDown2":
+            system.volDown2x()
         else:
             print("iv got a unknown message", button)
 
