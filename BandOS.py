@@ -1,4 +1,6 @@
 # @rebootstr
+import os
+
 from Apps.MainMenu import MenuApp
 from Apps.OSI import OSI
 
@@ -46,4 +48,12 @@ class BandOS(OSI):
         self.selectedApp = self.menuApp
 
     def print(self, text):
-        print(text) # todo
+        print(text)
+        try:
+            os.system(self._prepareNotification("BandOS", text))
+        except:
+            pass
+
+    def _prepareNotification(self, title, context):
+        command = 'termux-notification -t "{}" -c "{}" -i 1337'
+        return command.format(title, context)
