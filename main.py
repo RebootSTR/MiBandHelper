@@ -1,5 +1,5 @@
 # rebootstr
-import time
+
 from queue import Queue
 from threading import Thread
 from HTTPServer import HTTPServer
@@ -15,25 +15,20 @@ def start_server(queue: Queue):
     serverThread = Thread(target=listener, daemon=True)
     serverThread.start()
 
-'''Music Play/Pause event use com.mc.miband.buttonMusicPlay action **
 
-    Music Next event use com.mc.miband.buttonMusicNext action **
-    
-    Music Previous event use com.mc.miband.buttonMusicPrevious action **
-    
-    Music Volume up event use com.mc.miband.buttonMusicVolumeUp action **
-    
-    Music Volume down event use com.mc.miband.buttonMusicVolumeDown action **
-    
-    Music 2x Play/Pause event use com.mc.miband.buttonMusicPlay2 action **
-    
-    Music 2x Next event use com.mc.miband.buttonMusicNext2 action **
-    
-    Music 2x Previous event use com.mc.miband.buttonMusicPrevious2 action **
-    
-    Music 2x Volume up event use com.mc.miband.buttonMusicVolumeUp2 action **
-    
-    Music 2x Volume down event use com.mc.miband.buttonMusicVolumeDown2 action **'''
+buttons = \
+    {
+        "5": "buttonMusicPlay",
+        "3": "buttonMusicNext",
+        "1": "buttonMusicPrevious",
+        "9": "buttonMusicVolumeUp",
+        "7": "buttonMusicVolumeDown",
+        "25": "buttonMusicPlay2",
+        "23": "buttonMusicNext2",
+        "21": "buttonMusicPrevious2",
+        "29": "buttonMusicVolumeUp2",
+        "27": "buttonMusicVolumeDown2"
+    }
 
 
 def run():
@@ -78,6 +73,8 @@ def run():
             print("search")
             search_mode = True
             search_value = 0
+        else:
+            print("iv got a unknown message", button)
 
 
 if __name__ == '__main__':
