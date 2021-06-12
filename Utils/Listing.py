@@ -51,11 +51,14 @@ class Listing:
         else:
             self.index = len(self.elements) - 1
 
-    def getList(self):
+    def getList(self, cut: int = None):
         toPrint = ""
         for i in range(len(self.elements)):
             prefix = "#" if i == self.index else "-"
-            toPrint += f"{i}.{prefix}{self.elements[i]}\n"
+            if cut is None:
+                toPrint += f"{i}.{prefix}{self.elements[i]}\n"
+            else:
+                toPrint += f"{i}.{prefix}{self.elements[i][cut]}\n"
         if toPrint == "":
             toPrint = "NOTHING"
         return toPrint

@@ -45,9 +45,9 @@ class Questions(AppI):
 
     def play(self):
         if self.filesListing.enabled:
-            self.system.print(self.filesListing.getList())
+            self.system.print(self.filesListing.getList(30))
         elif self.questionsListing.enabled:
-            self.system.print(self.questionsListing.getList())
+            self.system.print(self.questionsListing.getList(30))
 
     def play2x(self):
         if self.filesListing.enabled:
@@ -87,7 +87,7 @@ class Questions(AppI):
         for block in blocks:
             if len(block) == 0:
                 continue
-            question = block[0][:30]
+            question = block[0]
             answer = ""
             for i in range(1, len(block)):
                 answer += block[i] + "\n"
