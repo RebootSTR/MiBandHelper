@@ -32,6 +32,9 @@ class Listing:
         else:
             self.search = Searcher()
 
+    def cancelSearch(self):
+        self.search = None
+
     def prev(self):
         if self.search:
             self.search: Searcher

@@ -30,10 +30,16 @@ class Questions(AppI):
 
     def volDown(self):
         if self.filesListing.enabled:
-            self.system.exitToMainMenu()
+            if self.filesListing.search:
+                self.filesListing.cancelSearch()
+            else:
+                self.system.exitToMainMenu()
         elif self.questionsListing.enabled:
-            self.questionsListing.enabled = False
-            self.filesListing.enabled = True
+            if self.questionsListing.search:
+                self.questionsListing.cancelSearch()
+            else:
+                self.questionsListing.enabled = False
+                self.filesListing.enabled = True
 
     def volUp2x(self):
         if self.filesListing.enabled:
