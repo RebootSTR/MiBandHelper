@@ -59,11 +59,15 @@ class BandOS(OSI):
                 else:
                     parts.append(part)
                     part = ""
+            parts.append(part)
             i = 1
+
+            kostyl = os.system(self._prepareNotification(f"BandOS 0/{len(parts)}", "wait, please"))
+            time.sleep(1)
+
             for part in reversed(parts):
                 os.system(self._prepareNotification(f"BandOS {i}/{len(parts)}", part))
                 i += 1
-                time.sleep(0.5)
         else:
             os.system(self._prepareNotification("BandOS", text))
 
