@@ -41,7 +41,7 @@ class Questions(AppI):
             self._parseQuestions()
             self.questionsListing.start()
         elif self.questionsListing.enabled:
-            self.system.print(self.answers[self.questionsListing.index])
+            self.system.print(self._formatAnswer())
 
     def play(self):
         if self.filesListing.enabled:
@@ -81,7 +81,6 @@ class Questions(AppI):
             else:
                 block.append(line.replace("\n", ""))
         blocks.append(block)
-        block = []
 
         questions = []
         answers = []
@@ -92,7 +91,14 @@ class Questions(AppI):
             answer = ""
             for i in range(1, len(block)):
                 answer += block[i] + "\n"
+            answer = answer[:-1]
             questions.append(question)
             answers.append(answer)
         self.answers = answers
         self.questionsListing.elements = questions
+
+    def _formatAnswer(self):
+        ind = self.questionsListing.index
+        question = self.questionsListing.getElement()
+        answer = self.answers[ind]
+        return f"{ind}.{question}\n{answer}"
