@@ -57,7 +57,8 @@ class BandOS(OSI):
                 if len(part + "\n" + line) < 200:
                     part += "\n" + line
                 else:
-                    parts.append(part)
+                    if part != "":
+                        parts.append(part)
                     part = line
             parts.append(part)
             i = 1
