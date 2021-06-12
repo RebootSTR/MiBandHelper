@@ -1,5 +1,6 @@
 # @rebootstr
 import os
+import time
 
 from Apps.MainMenu import MenuApp
 from Apps.OSI import OSI
@@ -48,12 +49,24 @@ class BandOS(OSI):
         self.selectedApp = self.menuApp
 
     def print(self, text):
-        print(text)
-        try:
+        if len(text) > 200:
+            parts = []
+            part = ""
+            lines = text.split("\n")
+            for line in lines:
+                if len(part + "\n" + line) < 200:
+                    part += "\n" + line
+                else:
+                    parts.append(part)
+                    part = ""
+            i = 1
+            for part in reversed(parts):
+                os.system(self._prepareNotification(f"BandOS {i}/{len(parts)}", part))
+                i += 1
+                time.sleep(0.5)
+        else:
             os.system(self._prepareNotification("BandOS", text))
-        except:
-            pass
 
     def _prepareNotification(self, title, context):
-        command = 'termux-notification -t "{}" -c "{}" -i 1337'
+        command = 'termux-notification -t "{}" -c "{}"'
         return command.format(title, context)
