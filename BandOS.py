@@ -58,14 +58,16 @@ class BandOS(OSI):
                     part += "\n" + line
                 else:
                     parts.append(part)
-                    part = ""
+                    part = line
             parts.append(part)
             i = 1
             for part in reversed(parts):
+                print(part)
                 os.system(self._prepareNotification(f"BandOS {i}/{len(parts)}", part))
                 i += 1
                 time.sleep(1)
         else:
+            print(text)
             os.system(self._prepareNotification("BandOS", text))
 
     def _prepareNotification(self, title, context):
