@@ -100,5 +100,5 @@ class Questions(AppI):
     def _formatAnswer(self):
         ind = self.questionsListing.index
         question = self.questionsListing.getElement()
-        answer = self.answers[ind]
-        return f"{ind}.{question}\n{answer}"
+        answer = self.answers[ind].replace('\n', '\n-')
+        return f"{ind}.{question}\n-{answer}"
