@@ -23,14 +23,13 @@ class MenuApp(Apps.AppI.AppI):
         self._openApp()
 
     def play(self):
-        if self.searchMode:
-            self._applySearching()
-        else:
-            self._printListing()
+        self._printListing()
 
     def play2x(self):
         if not self.searchMode:
             self._enterToSearchMode()
+        else:
+            self._applySearching()
 
     def previous(self):
         if self.searchMode:
