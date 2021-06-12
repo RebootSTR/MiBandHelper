@@ -58,7 +58,7 @@ class Listing:
             if cut is None:
                 toPrint += f"{i}.{prefix}{self.elements[i]}\n"
             else:
-                toPrint += f"{i}.{prefix}{self.elements[i][cut]}\n"
+                toPrint += f"{i}.{prefix}{self.elements[i][:cut]}\n"
         if toPrint == "":
             toPrint = "NOTHING"
         return toPrint
